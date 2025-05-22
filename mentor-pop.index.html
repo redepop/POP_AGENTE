@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // STEP 1: Define your destination URLs here
+    const urls = [
+      "https://t.me/amaliaredepop",
+      "https://t.me/anaslot2",
+      "https://t.me/erickmus12"
+    ];
+
+    // STEP 2: Get the next URL index using localStorage
+    function getNextIndex() {
+      let index = parseInt(localStorage.getItem('redirectIndex') || '0');
+      let nextIndex = (index + 1) % urls.length;
+      localStorage.setItem('redirectIndex', nextIndex);
+      return index;
+    }
+
+    // STEP 3: Redirect as soon as the page loads
+    window.onload = function () {
+      const index = getNextIndex();
+      window.location.href = urls[index];
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting... If not redirected, <a id="manualLink" href="#">click here</a>.</p>
+  <script>
+    // Set fallback link in case redirect fails
+    document.getElementById('manualLink').href = urls[getNextIndex()];
+  </script>
+</body>
+</html>
